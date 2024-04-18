@@ -1,0 +1,20 @@
+{
+    "name": "gordo/app-salon",
+    "description": "Proyecto PHP MVC SQL SASS GULP",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models",
+            "Gordo\\AppSalon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DavBN",
+            "email": "162839191+DavBN@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
