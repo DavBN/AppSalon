@@ -1,0 +1,50 @@
+<?php
+
+namespace Classes;
+
+use PHPMailer\PHPMailer\PHPMailer;
+
+class Email
+{
+    public $email;
+    public $nombre;
+    public $token;
+
+    public function __construct($email, $nombre, $token)
+    {
+        $this->email = $email;
+        $this->nombre = $nombre;
+        $this->token = $token;
+    }
+
+    public function enviarConfirmacion()
+    {
+
+        // Crear el objeto de email
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = 'f08a8f23311b9e';
+        $mail->Password = '45fa53bdee154e';
+
+        $mail->setFrom('cuentas@appsalon.com', 'AppSalon.com');
+        $mail->addAddress($this->email);
+        $mail->Subject = 'Confirma tu cuenta';
+
+        // Set html
+        $mail->isHTML(TRUE);
+        $mail->CharSet = 'UTF-8';
+
+        $contenido = "<html>";
+        $contenido .= "<p><strong>Hola" . $this->email  . "</strong> Has creado tu cuenta en la APP, solo debes confirmar dando click en el siguiente enlace</p>";
+        $contenido .= "<p>Presiona Aquí: <a href='http://localhost:3000/confirmar-cuenta?token=" . $this->token . "'>Confirma tu cuenta </a></p>";
+        $contenido .= "<p>Si no solicitaste esta cuenta, ignora el mensaje</p>";
+        $contenido .= "</html>";
+        $mail->Body = $contenido;
+
+        // Enviar el email
+        $mail->send();
+    }
+}
