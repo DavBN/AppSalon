@@ -47,29 +47,77 @@ class Usuario extends ActiveRecord
         if (!$this->password) {
             self::$alertas['error'][] = 'La contraseña es obligatoria';
         }
-        if(strlen($this->password) < 6){
+        if (strlen($this->password) < 6) {
             self::$alertas['error'][] = 'La contraseña debe contener al menos 6 caracteres';
         }
         return self::$alertas;
     }
-     
-    // Revisa si el usuario ya existe
-    public function existeUsuario(){
-       $query = " SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
-       $resultado = self::$db->query($query);
 
-       if($resultado->num_rows){
-        self::$alertas['error'] [] = 'El usuario ya esta registrado';
 
-       }
-       return $resultado;
+    //Validación del login
+    public function validarLogin()
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El email es obligatorio';
+        }
+        if (!$this->password) {
+            self::$alertas['error'][] = 'La contraseña es obligatoria';
+        }
+
+        return self::$alertas;
     }
 
-    public function hashPassword() {
+    public function validarEmail()
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El email es obligatorio';
+        }
+        return self::$alertas;
+    }
+
+    //Recuperación de contraseña
+    public function validarPassword()
+    {
+        if (!$this->password) {
+            selF::$alertas['error'] [] = 'La contraseña es obligatoria';
+        }
+        if(strlen($this->password) < 6) {
+            self::$alertas['error'] [] = 'La contraseña debe tener al menos 6 caracteres';
+        }
+        return self::$alertas;
+    }
+
+
+    // Revisa si el usuario ya existe
+    public function existeUsuario()
+    {
+        $query = " SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
+        $resultado = self::$db->query($query);
+
+        if ($resultado->num_rows) {
+            self::$alertas['error'][] = 'El usuario ya esta registrado';
+        }
+        return $resultado;
+    }
+
+    public function hashPassword()
+    {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
-    public function crearToken() {
+    public function crearToken()
+    {
         $this->token = uniqid();
+    }
+
+    public function comprobarPasswordAndVerificado($password)
+    {
+        $resultado = password_verify($password, $this->password);
+
+        if (!$resultado || !$this->confirmado) {
+            self::$alertas['error'][] = 'Contraseña incorrecta o tu cuenta no ha sido confirmada';
+        } else {
+            return true;
+        }
     }
 }
