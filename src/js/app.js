@@ -4,6 +4,7 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 
 const cita = {
+    id: '',
     nombre: '',
     fecha: '',
     hora: '',
@@ -24,6 +25,7 @@ function iniciarApp() {
 
     consultarAPI(); // consulta la api en el backend de php
 
+    idCliente();
     nombreCliente(); // Añade el nombre del cliente al objeto cita
     seleccionarFecha(); //Añade la fecha al objeto de cita
     seleccionarHora(); //añade la hora de la cita en el objeto
@@ -164,6 +166,10 @@ function seleccionarServicio(servicio) {
     console.log(cita);
 }
 
+function idCliente() {
+    cita.id = document.querySelector('#id').value;
+}
+
 function nombreCliente() {
     cita.nombre = document.querySelector('#nombre').value;
 
@@ -224,22 +230,22 @@ function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
 
 function mostrarResumen() {
     const resumen = document.querySelector('.contenido-resumen');
-    
+
     //Limpiar el contenido de resumen
-    while(resumen.firstChild){
+    while (resumen.firstChild) {
         resumen.removeChild(resumen.firstChild);
     }
 
-    if(Object.values(cita).includes('') || cita.servicios.length === 0) {
+    if (Object.values(cita).includes('') || cita.servicios.length === 0) {
         mostrarAlerta('Faltan datos de servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
 
         return;
-    } 
+    }
 
     console.log('Todo bien');
 
     // Formtear el div de resumen
-    const {nombre, fecha, hora, servicios} = cita;
+    const { nombre, fecha, hora, servicios } = cita;
 
     //heading para servicios resumen
     const headingServicios = document.createElement('H3');
@@ -250,7 +256,7 @@ function mostrarResumen() {
 
     //Iterando los servicios
     servicios.forEach(servicio => {
-        const {id, precio, nombre} = servicio;
+        const { id, precio, nombre } = servicio;
         const contenedorServicio = document.createElement('DIV');
         contenedorServicio.classList.add('contenedor-servicio');
 
@@ -266,10 +272,10 @@ function mostrarResumen() {
         resumen.appendChild(contenedorServicio);
     })
 
-      //heading para citas resumen
-      const headingCita = document.createElement('H3');
-      headingCita.textContent = 'Resumen de cita';
-      resumen.appendChild(headingCita);
+    //heading para citas resumen
+    const headingCita = document.createElement('H3');
+    headingCita.textContent = 'Resumen de cita';
+    resumen.appendChild(headingCita);
 
     const nombreCliente = document.createElement('P');
     nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
@@ -281,8 +287,8 @@ function mostrarResumen() {
     const year = fechaObj.getFullYear();
 
     const fechaUTC = new Date(Date.UTC(year, mes, dia));
-    
-    const opciones = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
+
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
     const fechaFormateada = fechaUTC.toLocaleDateString('es-CO', opciones);
 
     const fechaCita = document.createElement('P');
@@ -305,6 +311,52 @@ function mostrarResumen() {
     resumen.appendChild(botonReservar);
 }
 
-function reservarCita() {
+async function reservarCita() {
+
+    const { nombre, fecha, hora, servicios, id } = cita;
+
+    const idServicios = servicios.map((servicio) => servicio.id);
+
+    const datos = new FormData();
+    datos.append('fecha', fecha);
+    datos.append('hora', hora);
+    datos.append('usuarioId', id);
+    datos.append('servicios', idServicios);
+
+
+    try { // petición hacia la API
+        const url = 'http://localhost:3000/api/citas'
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            body: datos
+        });
+
+        const resultado = await respuesta.json();
+        console.log(resultado.resultado);
+
+        if(resultado.resultado) {
+    
+            Swal.fire({
+                icon: "success",
+                title: "Cita creada",
+                text: "Tu cita fue creada con éxito",
+                button: "OK",
+                
+            }).then(() => {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            })
+
+        }
+
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Hubo un error al guardar la cita",
+          });
+    }
+
 
 }

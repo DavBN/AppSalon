@@ -1,6 +1,14 @@
 <h1 class="nombre-pagina">Crear Nueva Cita</h1>
 <p class="descripcion-pagina">Elige tus servicios con tus datos</p>
 
+<div class="barra">
+    <p>Hola: <?php echo $nombre ?? ''; ?></p>
+
+
+    <a class="boton" href="/logout">Cerrar Sesión</a>
+
+</div>
+
 <div id="app">
     <nav class="tabs">
         <button class="actual" type="button" data-paso="1">Servicios</button>
@@ -25,13 +33,14 @@
 
             <div class="campo">
                 <label for="fecha">Fecha</label>
-                <input id="fecha" type="date" min="<?php echo date('Y-m-d', strtotime('+1 day')) ?>"/>
+                <input id="fecha" type="date" min="<?php echo date('Y-m-d', strtotime('+1 day')) ?>" />
             </div>
 
             <div class="campo">
                 <label for="hora">Hora</label>
                 <input id="hora" type="time" />
             </div>
+            <input type="hidden" id="id" value="<?php echo $id; ?>">
         </form>
     </div>
     <div id="paso-3" class="seccion contenido-resumen">
@@ -41,22 +50,16 @@
     </div>
 
     <div class="paginacion">
-        <button 
-        id="anterior"
-        class="boton"
-        >&laquo; Anterior </button>
+        <button id="anterior" class="boton">&laquo; Anterior </button>
 
-        <button 
-        id="siguiente"
-        class="boton"
-        >Siguiente &raquo; </button>
+        <button id="siguiente" class="boton">Siguiente &raquo; </button>
     </div>
 
 </div>
 
-<?php 
-   $script = "
-   
+<?php
+$script = "
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
    <script src='build/js/app.js'></script>
    ";
 
