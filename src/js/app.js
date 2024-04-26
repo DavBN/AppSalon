@@ -11,6 +11,26 @@ const cita = {
     servicios: []
 
 }
+// Importa módulos necesarios
+const express = require('express');
+const cors = require('cors');
+
+// Crea una instancia de Express
+const app = express();
+
+// Configura CORS
+app.use(cors({
+    origin: 'https://mayhupa.nyc.dom.my.id', // Cambia esto por el dominio permitido
+}));
+
+// Define una ruta para la API
+app.get('/api/servicios', (req, res) => {
+    res.json({ data: 'Ejemplo de datos' });
+});
+
+// Inicia el servidor y escucha en el puerto 3000
+app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000'));
+
 
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
