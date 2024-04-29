@@ -21,6 +21,8 @@ const app = express();
 // Configura CORS
 app.use(cors({
     origin: 'https://mayhupa.nyc.dom.my.id', // Cambia esto por el dominio permitido
+    methods: ['GET', 'POST'],
+    credentials: true
 }));
 
 // Define una ruta para la API
