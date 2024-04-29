@@ -131,6 +131,7 @@ function paginaSiguiente() {
 
     })
 }
+
 async function consultarAPI() {
     try {
         const url = '/api/servicios';
@@ -143,8 +144,7 @@ async function consultarAPI() {
         const servicios = await resultado.json();
         mostrarServicios(servicios);
     } catch (error) {
-        console.error('Error fetching data:', error);
-        // Puedes agregar aquí lógica para mostrar un mensaje de error al usuario
+        console.log(error);
     }
 }
 
