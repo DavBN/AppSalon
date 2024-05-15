@@ -31,7 +31,7 @@ app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000'));
 
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
-});
+
 
 function iniciarApp() {
     mostrarSeccion(); // Muestra y oculta las secciones
@@ -382,4 +382,5 @@ async function reservarCita() {
 
 
 }
+});
 
