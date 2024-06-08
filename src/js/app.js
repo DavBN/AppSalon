@@ -12,18 +12,6 @@ const cita = {
 
 }
 
-const express = require("express");
-const cors = require("cors");
-const app = express();
-
-/// Habilitar CORS con rutas relativas
-app.use(cors());
-
-// Resto de tu aplicación Express aquí
-
-// Inicia el servidor y escucha en el puerto 3000
-app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000'));
-
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
 
