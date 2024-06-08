@@ -14,14 +14,20 @@ const cita = {
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const PORT = 3000;
+
 const corsOptions = {
-    origin: "zarwaza.nyc.dom.my.id",
+    origin: "https://zarwaza.nyc.dom.my.id",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
 };
 
-
 app.use(cors(corsOptions));
+
+// Ruta para obtener todos los servicios
+app.get("/api/servicios", (req, res) => {
+    res.json(servicios);
+});
 
 app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000'));
 
