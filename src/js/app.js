@@ -1,4 +1,8 @@
 
+// Permitir solicitudes desde un origen específico
+header("Access-Control-Allow-Origin: https://zarwaza.nyc.dom.my.id");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 let paso = 1;
 const pasoInicial = 1;
 const pasoFinal = 3;
@@ -11,23 +15,6 @@ const cita = {
     servicios: []
 
 }
-
-import express from "express";
-import cors from "cors";
-const app = express();
-
- //Permitir solicitudes desde un origen específico
-const corsOptions = {
-  origin: 'zarwaza.nyc.dom.my.id', // Origen que permites
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-};
-
-app.use(cors(corsOptions));
-
-
-// Inicia el servidor y escucha en el puerto 3000
-app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000'));
 
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
