@@ -15,9 +15,9 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// Permitir solicitudes desde un origen específico
+ //Permitir solicitudes desde un origen específico
 const corsOptions = {
-  origin: 'https://mayhupa.nyc.dom.my.id', // Origen que permites
+  origin: 'zarwaza.nyc.dom.my.id', // Origen que permites
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
 };
@@ -25,7 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// Inicia el servidor y escucha en el puerto 3000
+ //Inicia el servidor y escucha en el puerto 3000
 app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000'));
 
 
@@ -305,7 +305,7 @@ function mostrarResumen() {
     //Formatear la fecha en español
     const fechaObj = new Date(fecha);
     const mes = fechaObj.getMonth();
-    const dia = fechaObj.getDay() + 2;
+    const dia = fechaObj.getDate() + 2;
     const year = fechaObj.getFullYear();
 
     const fechaUTC = new Date(Date.UTC(year, mes, dia));

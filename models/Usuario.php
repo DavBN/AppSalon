@@ -112,12 +112,21 @@ class Usuario extends ActiveRecord
 
     public function comprobarPasswordAndVerificado($password)
     {
+        // Verificar si $this->password es null
+        if (is_null($this->password)) {
+            self::$alertas['error'][] = 'Contraseña incorrecta o tu cuenta no ha sido confirmada';
+            return false;
+        }
+    
+        // Verificar la contraseña
         $resultado = password_verify($password, $this->password);
-
+    
         if (!$resultado || !$this->confirmado) {
             self::$alertas['error'][] = 'Contraseña incorrecta o tu cuenta no ha sido confirmada';
+            return false;
         } else {
             return true;
         }
     }
+    
 }
