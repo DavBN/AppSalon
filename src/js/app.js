@@ -18,7 +18,7 @@ const app = express();
 
 // Permitir solicitudes desde un origen específico
 const corsOptions = {
-  origin: 'https://zarwaza.nyc.dom.my.id/', // Reemplaza 'http://tudominio.com' con tu dominio permitido
+  origin: 'https://zarwaza.nyc.dom.my.id', // Reemplaza 'http://tudominio.com' con tu dominio permitido
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
 };
