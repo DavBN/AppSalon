@@ -16,7 +16,7 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-    origin: 'https://zarwaza.nyc.dom.my.id',
+    origin: 'zarwaza.nyc.dom.my.id',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
