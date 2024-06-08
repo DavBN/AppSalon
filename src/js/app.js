@@ -11,15 +11,15 @@ const cita = {
     servicios: []
 
 }
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const app = express();
-
 const corsOptions = {
-    origin: 'zarwaza.nyc.dom.my.id',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: "https://zarwaza.nyc.dom.my.id",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 };
+
 
 app.use(cors(corsOptions));
 
