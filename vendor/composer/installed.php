@@ -3,7 +3,7 @@
         'name' => 'gordo/app-salon',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'f2fdca3e487fe33ee525e775bde36e44ffe28c6d',
+        'reference' => '30393aa6fc30db7de47879545d6a3b36890d875d',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'gordo/app-salon' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'f2fdca3e487fe33ee525e775bde36e44ffe28c6d',
+            'reference' => '30393aa6fc30db7de47879545d6a3b36890d875d',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
