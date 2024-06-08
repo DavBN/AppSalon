@@ -16,14 +16,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-// Permitir solicitudes desde un origen específico
-const corsOptions = {
-  origin: 'https://zarwaza.nyc.dom.my.id', // Reemplaza 'http://tudominio.com' con tu dominio permitido
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-};
-
-app.use(cors(corsOptions));
+/// Habilitar CORS con rutas relativas
+app.use(cors());
 
 // Resto de tu aplicación Express aquí
 
