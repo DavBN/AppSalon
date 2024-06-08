@@ -14,14 +14,12 @@ const cita = {
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const corsOptions = {
-    origin: "https://zarwaza.nyc.dom.my.id",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-};
 
-app.use(cors(corsOptions));
+// Permitir todos los orígenes temporalmente
+app.use(cors());
+
 app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000'));
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
