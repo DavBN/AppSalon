@@ -12,8 +12,8 @@ const cita = {
 
 }
 
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 const app = express();
 
  //Permitir solicitudes desde un origen específico
