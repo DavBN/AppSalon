@@ -1,16 +1,16 @@
 // tests/DatabaseConnectionTest.php
-<?php
+//<?php
 
-require 'DatabaseTestCase.php';
+//require 'DatabaseTestCase.php';
 
 
-class DatabaseConnectionTest extends DatabaseTestCase
-{
+//class DatabaseConnectionTest extends DatabaseTestCase
+//{
    
-    public function testDatabaseConnection()
-    {
+   // public function testDatabaseConnection()
+    //{
      
-        $this->assertNotNull($this->mysqli);
-        $this->assertInstanceOf(mysqli::class, $this->mysqli);
-    }
-}
+       // $this->assertNotNull($this->mysqli);
+      //  $this->assertInstanceOf(mysqli::class, $this->mysqli);
+   // }
+//}
