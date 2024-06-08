@@ -23,7 +23,9 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+app.get('/api/servicios', (req, res) => {
+    res.json({ data: 'Ejemplo de datos' });
+  });
 
  //Inicia el servidor y escucha en el puerto 3000
 app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000'));
